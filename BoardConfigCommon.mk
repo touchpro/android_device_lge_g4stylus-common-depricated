@@ -37,7 +37,3 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_INCLUDE_CRYPTO := true
 TW_NO_USB_STORAGE := true
 TW_NO_SCREEN_TIMEOUT := true
-
-# SELinux
-#BOARD_SEPOLICY_DIRS += device/lge/g4stylus-common/sepolicy
-#BOARD_SEPOLICY_UNION += \

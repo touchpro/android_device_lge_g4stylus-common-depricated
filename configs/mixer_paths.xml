@@ -335,6 +335,14 @@
         <path name="voice-call bt-sco" />
     </path>
 
+    <path name="voice-call bt-sco-and-speaker">
+        <path name="voice-call bt-sco" />
+    </path>
+
+    <path name="voice-call bt-sco-wb-and-speaker">
+        <path name="voice-call bt-sco-wb" />
+    </path>
+
     <path name="voice-call usb-headphones">
         <ctl name="AFE_PCM_RX_Voice Mixer CSVoice" value="1" />
         <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="1" />
@@ -540,7 +548,7 @@
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RX3 MIX1 INP2" value="RX2" />
         <ctl name="SPK DAC Switch" value="1" />
-        <ctl name="RX3 Digital Volume" value="82" />
+        <ctl name="RX3 Digital Volume" value="77" />
     </path>
 
     <path name="speaker-mic">
@@ -571,8 +579,8 @@
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="RX2 MIX1 INP1" value="RX2" />
         <ctl name="RDAC2 MUX" value="RX2" />
-        <ctl name="RX1 Digital Volume" value="90" />
-        <ctl name="RX2 Digital Volume" value="90" />
+        <ctl name="RX1 Digital Volume" value="78" />
+        <ctl name="RX2 Digital Volume" value="78" />
         <ctl name="HPHL" value="Switch" />
         <ctl name="HPHR" value="Switch" />
     </path>
@@ -628,22 +636,22 @@
 
     <path name="voice-headphones">
         <path name="headphones" />
-        <ctl name="RX1 Digital Volume" value="90" />
-        <ctl name="RX2 Digital Volume" value="90" />
+        <ctl name="RX1 Digital Volume" value="84" />
+        <ctl name="RX2 Digital Volume" value="84" />
     </path>
 
     <path name="voice-headset-mic">
         <path name="headset-mic" />
-        <ctl name="ADC2 Volume" value="8" /> 
-        <ctl name="DEC2 Volume" value="88" />
+        <ctl name="ADC2 Volume" value="6" /> 
+        <ctl name="DEC2 Volume" value="84" />
     </path>
 
     <path name="speaker-and-headphones">
         <path name="headphones" />
         <path name="speaker" />
-        <ctl name="RX1 Digital Volume" value="80" />
-        <ctl name="RX2 Digital Volume" value="80" />
-        <ctl name="RX3 Digital Volume" value="90" />
+        <ctl name="RX1 Digital Volume" value="68" />
+        <ctl name="RX2 Digital Volume" value="68" />
+        <ctl name="RX3 Digital Volume" value="82" />
     </path>
 
     <path name="handset-mic-vr">
@@ -686,6 +694,7 @@
     <path name="loopback-handset-mic">
         <path name="adc1" />
         <ctl name="DEC1 Volume" value="91" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
 
     <path name="loopback-speaker-mic">
@@ -739,6 +748,7 @@
     <path name="camcorder-mic">
         <path name="adc1" />
         <ctl name="DEC1 Volume" value="84" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
 
     <path name="bt-sco-headset">
@@ -768,11 +778,13 @@
     <path name="voice-memo-8K">
         <path name="adc1" />
         <ctl name="DEC1 Volume" value="84" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
 
     <path name="voice-memo">
         <path name="adc1" />
         <ctl name="DEC1 Volume" value="84" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
 
     <path name="headset-voice-memo-8k">
@@ -887,6 +899,7 @@
 
     <path name="voice-tty-vco-handset-mic">
         <path name="handset-mic" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
 
     <path name="ADSP testfwk">
@@ -964,20 +977,20 @@
 
     <path name="headphone-24bit-48khz">
         <path name="headphones" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
      <path name="headphone-24bit-96khz">
         <path name="headphones" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-192khz">
         <path name="headphones" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="fake_speaker">
@@ -1007,38 +1020,38 @@
 
     <path name="headphone-24bit-48khz-advanced">
         <path name="headphones-advanced" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-48khz-aux">
         <path name="headphones-aux" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-96khz-advanced">
         <path name="headphones-advanced" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-96khz-aux">
         <path name="headphones-aux" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-192khz-advanced">
         <path name="headphones-advanced" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
     <path name="headphone-24bit-192khz-aux">
         <path name="headphones-aux" />
-        <ctl name="RX1 Digital Volume" value="70" />
-        <ctl name="RX2 Digital Volume" value="70" />
+        <ctl name="RX1 Digital Volume" value="50" />
+        <ctl name="RX2 Digital Volume" value="50" />
     </path>
 
    <!-- No audience use for C70-->
@@ -1098,6 +1111,7 @@
     <!--
     <path name="submic-2">
         <path name="adc1" />
+        <ctl name="ADC1 Volume" value="6" />
     </path>
     -->
 
@@ -1156,6 +1170,7 @@
     -->
 
     <path name="mictest-handset-mic">
+        <path name="handset-mic"/>
     </path>
 
     <path name="mictest-submic1">
