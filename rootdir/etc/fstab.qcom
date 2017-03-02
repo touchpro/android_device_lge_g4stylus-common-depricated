@@ -20,4 +20,4 @@
 /dev/block/bootdevice/by-name/recovery   /recovery              emmc   defaults                                                         defaults
 /dev/block/bootdevice/by-name/misc       /misc                  emmc   defaults                                                         defaults
 
-/devices/soc.0/7864900.sdhci/mmc_host*   auto                   auto   defaults                                                         voldmanaged=sdcard1:auto,noemulatedsd
+/devices/soc.0/7864900.sdhci/mmc_host*   auto			auto   nosuid,nodev                                                     wait,encryptable=/dev/block/bootdevice/by-name/encrypt,voldmanaged=external_SD:auto
