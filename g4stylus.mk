@@ -70,9 +70,5 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine-8916.conf:system/etc/thermal-engine-8916.conf
 
-# Wifi
-PRODUCT_COPY_FILES += \
-    device/lge/g4stylus-common/wcnss/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
-
 # common msm8916
 $(call inherit-product, device/lge/msm8916-common/msm8916.mk)
