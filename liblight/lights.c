@@ -39,7 +39,6 @@ static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static struct light_state_t g_notification;
 static struct light_state_t g_battery;
-static struct light_state_t g_attention;
 
 char const*const RED_LED_FILE
         = "/sys/class/leds/red/brightness";
@@ -76,28 +75,6 @@ write_int(char const* path, int value)
     } else {
         if (already_warned == 0) {
             ALOGE("write_int failed to open %s\n", path);
-            already_warned = 1;
-        }
-        return -errno;
-    }
-}
-
-static int
-write_str(char const* path, char *value)
-{
-    int fd;
-    static int already_warned = 0;
-
-    fd = open(path, O_RDWR);
-    if (fd >= 0) {
-        char buffer[PAGE_SIZE];
-        int bytes = sprintf(buffer, "%s\n", value);
-        int amt = write(fd, buffer, bytes);
-        close(fd);
-        return amt == -1 ? -errno : 0;
-    } else {
-        if (already_warned == 0) {
-            ALOGE("write_str failed to open %s\n", path);
             already_warned = 1;
         }
         return -errno;
@@ -156,7 +133,6 @@ set_speaker_light_locked(struct light_device_t* dev,
             write_int(RED_BLINK_FILE, 37);
         } else {
             write_int(RED_BLINK_FILE, 0);
-            write_int(RED_LED_FILE, 0);
         }
     }
 
@@ -164,24 +140,20 @@ set_speaker_light_locked(struct light_device_t* dev,
 }
 
 static void
-handle_speaker_battery_locked(struct light_device_t* dev,
-    struct light_state_t const* state, int state_type)
+handle_speaker_battery_locked(struct light_device_t* dev)
 {
-    if(is_lit(&g_attention)) {
-        set_speaker_light_locked(dev, NULL);
-        set_speaker_light_locked(dev, &g_attention);
-    } else {
-        if(is_lit(&g_battery) && is_lit(&g_notification)) {
-            set_speaker_light_locked(dev, NULL);
-            set_speaker_light_locked(dev, &g_notification);
-        } else if(is_lit(&g_battery)) {
-            set_speaker_light_locked(dev, NULL);
-            set_speaker_light_locked(dev, &g_battery);
-        } else {
-            set_speaker_light_locked(dev, &g_notification);
-        }
+  /*write_int(RED_LED_FILE, 255);
+    write_int(RED_LED_FILE, 0); */
+    if (is_lit(&g_notification)) {
+	set_speaker_light_locked(dev, &g_notification);
     }
-
+    else {
+	 if (is_lit(&g_battery)){
+	 write_int(RED_LED_FILE, 255);
+    	 } else {
+	 write_int(RED_LED_FILE, 0);
+	}
+    }
 }
 
 static int
@@ -190,7 +162,7 @@ set_light_battery(struct light_device_t* dev,
 {
     pthread_mutex_lock(&g_lock);
     g_battery = *state;
-    handle_speaker_battery_locked(dev, state, 0);
+    handle_speaker_battery_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
@@ -201,33 +173,10 @@ set_light_notifications(struct light_device_t* dev,
 {
     pthread_mutex_lock(&g_lock);
     g_notification = *state;
-    handle_speaker_battery_locked(dev, state, 1);
+    handle_speaker_battery_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
-
-static int
-set_light_attention(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    pthread_mutex_lock(&g_lock);
-    g_attention = *state;
-    /*
-     * attention logic tweaks from:
-     * https://github.com/CyanogenMod/android_device_samsung_d2-common/commit/6886bdbbc2417dd605f9818af2537c7b58491150
-    */
-    if (state->flashMode == LIGHT_FLASH_HARDWARE) {
-        if (g_attention.flashOnMS > 0 && g_attention.flashOffMS == 0) {
-            g_attention.flashMode = LIGHT_FLASH_NONE;
-        }
-    } else if (state->flashMode == LIGHT_FLASH_NONE) {
-        g_attention.color = 0;
-    }
-    handle_speaker_battery_locked(dev, state, 2);
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
 
 /** Close the lights device */
 static int
@@ -259,8 +208,6 @@ static int open_lights(const struct hw_module_t* module, char const* name,
         set_light = set_light_notifications;
     else if (0 == strcmp(LIGHT_ID_BATTERY, name))
         set_light = set_light_battery;
-    else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
-        set_light = set_light_attention;
     else
         return -EINVAL;
 
