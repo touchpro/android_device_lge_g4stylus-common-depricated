@@ -27,30 +27,6 @@
 #
 #
 
-on init
-
-    # START touch_driver
-    chown system system /sys/devices/virtual/input/lge_touch/lpwg_data
-    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_data
-    chown system system /sys/devices/virtual/input/lge_touch/lpwg_notify
-    chmod 664 /sys/devices/virtual/input/lge_touch/lpwg_notify
-    chown system system /sys/devices/virtual/input/lge_touch/ts_noise_log_enable
-    chmod 664 /sys/devices/virtual/input/lge_touch/ts_noise_log_enable
-    chown system system /sys/devices/virtual/input/lge_touch/ts_noise
-    chmod 664 /sys/devices/virtual/input/lge_touch/ts_noise
-    chmod 664 /sys/devices/virtual/input/lge_touch/quick_cover_status
-    chown system system /sys/devices/virtual/input/lge_touch/quick_cover_status
-    chown system lgkeyguard /sys/devices/virtual/input/lge_touch/keyguard
-    chmod 664 /sys/devices/virtual/input/lge_touch/keyguard
-    chown system system /sys/devices/virtual/input/lge_touch/pen_support
-    chmod 664 /sys/devices/virtual/input/lge_touch/pen_support
-    chown system system /sys/devices/virtual/input/lge_touch/ime_status
-    chmod 664 /sys/devices/virtual/input/lge_touch/ime_status
-    chown system system /sys/devices/virtual/input/lge_touch/rawdata
-    chmod 664 /sys/devices/virtual/input/lge_touch/rawdata
-    chown system system /sys/devices/virtual/input/lge_touch/use_quick_window
-    chmod 664 /sys/devices/virtual/input/lge_touch/use_quick_window
-
 on boot
     # LGE BMA2X2 Sensor
     chown system input /sys/devices/virtual/input/lge_accelerometer/SleepDur
@@ -113,14 +89,6 @@ on boot
     chown system input /sys/devices/virtual/input/lge_magnetometer/rept_z
     chown system input /sys/devices/virtual/input/lge_magnetometer/test
     chown system input /sys/devices/virtual/input/lge_accelerometer/fast_calibration_result
-    chown system input /sys/devices/virtual/input/lge_light/enable
-    chown system input /sys/devices/virtual/input/lge_light/ch0data
-    chown system input /sys/devices/virtual/input/lge_light/ch1data
-    chown system input /sys/devices/virtual/input/lge_light/name
-    chown system input /sys/devices/virtual/input/lge_light/phys
-    chown system input /sys/devices/virtual/input/lge_light/properties
-    chown system input /sys/devices/virtual/input/lge_light/value
-    chown system input /sys/devices/virtual/input/lge_light/poll_delay
 
     chmod 0660 /sys/devices/virtual/input/lge_accelerometer/SleepDur
     chmod 0660 /sys/devices/virtual/input/lge_accelerometer/bandwidth
@@ -182,22 +150,6 @@ on boot
     chmod 0660 /sys/devices/virtual/input/lge_magnetometer/rept_z
     chmod 0660 /sys/devices/virtual/input/lge_magnetometer/test
     chmod 0660 /sys/devices/virtual/input/lge_accelerometer/fast_calibration_result
-    chmod 0660 /sys/devices/virtual/input/lge_light/enable
-    chmod 0440 /sys/devices/virtual/input/lge_light/ch0data
-    chmod 0440 /sys/devices/virtual/input/lge_light/ch1data
-    chmod 0440 /sys/devices/virtual/input/lge_light/name
-    chmod 0440 /sys/devices/virtual/input/lge_light/phys
-    chmod 0440 /sys/devices/virtual/input/lge_light/properties
-    chmod 0660 /sys/devices/virtual/input/lge_light/value
-    chmod 0660 /sys/devices/virtual/input/lge_light/poll_delay
-
-    # LED pattern
-    chown system system /sys/class/leds/red/pattern_id
-    chmod 0664 /sys/class/leds/red/pattern_id
-    chown system system /sys/class/leds/red/timed
-    chmod 0664 /sys/class/leds/red/timed
-    chown system system /sys/class/leds/red/time_on_off
-    chmod 0664 /sys/class/leds/red/time_on_off
 
 # Charger
 on charger
